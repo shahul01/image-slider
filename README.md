@@ -1,3 +1,2 @@
-# SvelteKit - TypeScript - TailwindCSS template
-## created by [@shahul01](https://github.com/shahul01)
+# Image slider / Photo gallery carousel created in Svelte.
 
