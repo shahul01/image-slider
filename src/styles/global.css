@@ -1,0 +1,18 @@
+@import "./customTailwind.css";
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: arial, sans-serif;
+}
+
+.primary {
+  @apply bg-blue-500;
+  @apply w-[200px] h-[40px];
+  @apply rounded-xl;
+  @apply text-white;
+  @apply cursor-pointer select-none;
+}
