@@ -8,7 +8,7 @@
     let breedName = 'Loading';
     let URLList = [];
     let currImgPos = 0;
-  $: currURL = loadingImg;
+    $: currURL = loadingImg;
 
     onMount( () => {
         // to prevent unnecessarily fetching when writing code...
@@ -21,51 +21,50 @@
     function logSimpleURL() {
         let simpleURLList = URLList;
         simpleURLList = simpleURLList.map(el => {
-      return el.split("/")[4];
+            return el.split("/")[4];
         });
         console.log('simpleURLList', simpleURLList);
-
     };
 
     async function fetchImage(isIncrementImgPos) {
-    currURL = loadingImg;
+        currURL = loadingImg;
         const response = await fetch(fetchURL);
-    data = await response.json();
+        data = await response.json();
         setFetchedData(isIncrementImgPos);
     };
 
   function updateCurrURL() {
-    currURL = URLList[currImgPos];
+        currURL = URLList[currImgPos];
   };
 
     function setFetchedData(isIncrementImgPos) {
         URLList = [...URLList, data.message];
-    if (isIncrementImgPos === 'incrementImgPos') currImgPos+=1;
-    updateCurrURL();
-    logSimpleURL();
+        if (isIncrementImgPos === 'incrementImgPos') currImgPos+=1;
+        updateCurrURL();
+        logSimpleURL();
         getBreedName();
     };
 
     function getBreedName() {
-    updateCurrURL();
+        updateCurrURL();
         breedName = currURL?.split("/")[4];
-    // if (typeof(breedName) === 'undefined') return breedName = 'Loading';
+        // if (typeof(breedName) === 'undefined') return breedName = 'Loading';
         breedName = breedName?.split("-")?.join(' ');
         breedName = breedName?.charAt(0)?.toUpperCase() + breedName?.slice(1);
     };
 
     function handlePrev() {
-    currImgPos-=1;
+        currImgPos-=1;
         getBreedName();
     };
 
     async function handleNext() {
-    if ( currURL === URLList[URLList.length - 1]) {
-      await fetchImage('incrementImgPos');
+        if ( currURL === URLList[URLList.length - 1]) {
+            await fetchImage('incrementImgPos');
         } else {
-      currImgPos+=1;
-      getBreedName();
-    };
+            currImgPos+=1;
+            getBreedName();
+        };
     };
 
 </script>
@@ -86,8 +85,6 @@
   <h1 class="breed-name" title={currURL} >{breedName}</h1>
   <img id='myImg' src={currURL} alt="Dog" />
 </div>
-
-
 
 
 <style lang="postcss">
